@@ -6,6 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { Console } from 'console';
 
 @Injectable()
 export class UserService {
@@ -62,14 +63,28 @@ export class UserService {
   }
 
   //*-----------Update------------------*/
-  update(id: number, updateUserDto: UpdateUserDto) {
-    const Hash = bcrypt.hashSync(updateUserDto.password, 10);
-    const result = this.usersRepository.update(id, {
+  async update(Id: number, updateUserDto: UpdateUserDto) {
+    const validUser = await this.usersRepository.findOne({
+      where: {
+        Id,
+      },
+    });
+
+    if (!validUser) return new HttpException('USER_FOUND', HttpStatus.FOUND);
+
+    const Hash =
+      updateUserDto.password != '' || !undefined
+        ? bcrypt.hashSync(updateUserDto.password, 10)
+        : validUser.password;
+
+    const result = await this.usersRepository.update(Id, {
       ...updateUserDto,
       password: Hash,
     });
 
-    if (result) return this.findOne(id);
+    if (result.affected == 1)
+      return this.usersRepository.findOne({ where: { Id } });
+    new HttpException('USER_NOT_UPDATE', HttpStatus.EXPECTATION_FAILED);
   }
 
   //*-----------/Delete------------------*/

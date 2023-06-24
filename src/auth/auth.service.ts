@@ -31,6 +31,7 @@ export class AuthService {
       user: findUser,
       Token,
     };
+    console.log(data)
     return data;
   }
 }
