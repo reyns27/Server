@@ -6,9 +6,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { Console } from 'console';
 
-@Injectable()
+
+@Injectable() 
 export class UserService {
   constructor(
     private rolServices: RolService,
@@ -27,7 +27,7 @@ export class UserService {
       },
     });
 
-    if (newUser) return new HttpException('error', HttpStatus.CONFLICT);
+    if (newUser) return new HttpException('ERROR_EMAIL_CONFLICT', HttpStatus.CONFLICT);
     const Hash = bcrypt.hashSync(createUserDto.password, 10);
     const result = this.usersRepository.create({
       ...createUserDto,
@@ -73,10 +73,10 @@ export class UserService {
     if (!validUser) return new HttpException('USER_FOUND', HttpStatus.FOUND);
 
     const Hash =
-      updateUserDto.password != '' || !undefined
+      updateUserDto.password != undefined
         ? bcrypt.hashSync(updateUserDto.password, 10)
         : validUser.password;
-
+    console.log(Hash)
     const result = await this.usersRepository.update(Id, {
       ...updateUserDto,
       password: Hash,

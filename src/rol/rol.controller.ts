@@ -15,8 +15,9 @@ import { ParseIntPipe } from '@nestjs/common/pipes/parse-int.pipe';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 
-@UseGuards(JwtAuthGuard)
+
 @ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('rol')
 @Controller('rol')
 export class RolController {
