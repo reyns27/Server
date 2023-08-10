@@ -8,6 +8,6 @@ export class CreateRolDto {
 
   @ApiProperty()
   Description: string;
-
+  @ApiProperty()
   status: number;
 }

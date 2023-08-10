@@ -6,7 +6,7 @@ import {
     UpdateDateColumn,
     ManyToOne,
 } from 'typeorm';
-import { Statud } from './statud.entity';
+import { Statud } from '../../entities/statud.entity';
 
 @Entity()
 export class details {

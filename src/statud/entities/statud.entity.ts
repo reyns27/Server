@@ -6,7 +6,7 @@ import {
     UpdateDateColumn,
     OneToMany,
 } from 'typeorm';
-import { details } from './details.entity';
+import { details } from '../details/entities/details.entity';
 
 @Entity()
 export class Statud {

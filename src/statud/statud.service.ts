@@ -4,8 +4,10 @@ import { UpdateStatudDto } from './dto/update-statud.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Statud } from './entities/statud.entity';
 import { Repository } from 'typeorm';
-import { details } from './entities/details.entity';
+import { details } from './details/entities/details.entity';
 import { UserService } from 'src/user/user.service';
+import { CreateDetailsDto } from './details/dto/create-details.dto';
+import { UpdatedDetailsDto } from './details/dto/update-details.dto';
 
 @Injectable()
 export class StatudService {
@@ -13,7 +15,7 @@ export class StatudService {
     @InjectRepository(Statud) private statudServices: Repository<Statud>,
     @InjectRepository(details) private detailsServices: Repository<details>,
     private userServices: UserService,
-  ) {}
+  ) { }
 
   async create(createStatudDto: CreateStatudDto) {
     const userFound = await this.userServices.findOne(createStatudDto.userId);
@@ -68,9 +70,9 @@ export class StatudService {
       if (updateStatud.affected == 1) return this.findOne(id);
     }
     return new HttpException('ERROR_STATUD_UPDATED_FOUND', HttpStatus.FOUND);
-  }
+  };
 
   remove(id: number) {
     return `This action removes a #${id} statud`;
-  }
+  };
 }

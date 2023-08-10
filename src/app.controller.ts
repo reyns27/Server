@@ -1,10 +1,12 @@
 import { AppService } from './app.service';
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Res} from '@nestjs/common';
+import { Response } from 'express';
 import { AuthService } from './auth/auth.service';
 import { AuthDto } from './auth/dto/auth.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('auth')
+
+
 @Controller()
 export class AppController {
   constructor(
@@ -13,10 +15,11 @@ export class AppController {
   ) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getHello(@Res() res: Response) {
+     res.redirect('/api');
   }
 
+  @ApiTags('auth')
   @Post('login')
   async login(@Body() params: AuthDto) {
     return this.authService.loginWithCredentials(params);

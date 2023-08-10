@@ -11,12 +11,13 @@ import { StatudModule } from './statud/statud.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'admin',
-      password: 'Supermario27**',
-      database: 'dbapp',
+      type: 'postgres',
+      ssl:true,
+      host: 'ep-weathered-tooth-99214722.us-east-2.aws.neon.tech',
+      port: 5432,
+      username: 'fl0user',
+      password: 'RrtZv9Kn4Qqf',
+      database: 'DB-ME',
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
     }),

@@ -76,7 +76,6 @@ export class UserService {
       updateUserDto.password != undefined
         ? bcrypt.hashSync(updateUserDto.password, 10)
         : validUser.password;
-    console.log(Hash)
     const result = await this.usersRepository.update(Id, {
       ...updateUserDto,
       password: Hash,

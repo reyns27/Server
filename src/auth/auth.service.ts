@@ -28,7 +28,7 @@ export class AuthService {
     const Token = this.jwtTokenService.sign(payload);
 
     const data = {
-      user: findUser,
+      user: {...findUser, password:"****************"},
       Token,
     };
     console.log(data)
