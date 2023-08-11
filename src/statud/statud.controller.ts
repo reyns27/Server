@@ -20,7 +20,7 @@ export class StatudController {
     return this.statudService.create(createStatudDto);
   }
 
-  @Post('/details')
+  @Post('/details/new')
   createDetails(@Body() createDetailsDto: CreateDetailsDto) {
     return this.detailsService.createDetails(createDetailsDto);
   }
@@ -42,7 +42,7 @@ export class StatudController {
     return this.statudService.findOne(+id);
   }
 
-  @Get('/details')
+  @Get('/details/all')
   findAllDetails() {
     return this.detailsService.findAll();
   }
@@ -57,7 +57,7 @@ export class StatudController {
     return this.statudService.update(+id, updateStatudDto);
   }
 
-  @Patch('/details/:id')
+  @Patch('/details/update/:id')
   updateDetails(@Param('id') id: string, @Body() updateDetailsDto: UpdatedDetailsDto) {
     return this.detailsService.updateDetails(+id, updateDetailsDto);
   }
