@@ -5,7 +5,7 @@ import { details } from "./entities/details.entity";
 import { CreateDetailsDto } from "./dto/create-details.dto";
 import { UpdatedDetailsDto } from "./dto/update-details.dto";
 import { StatudService } from "../statud.service";
-import { Console, error } from "console";
+import { error } from "console";
 
 @Injectable()
 export class DetailsService {
@@ -32,17 +32,9 @@ export class DetailsService {
         return this.detailsServices.save(newStatudDetails);
     };
 
-
     async findAll() {
-        try {
-            const result = await this.detailsServices.find();
-            if (!result)
-                return new HttpException('ERROR_STATUD_DETAILS_NOT_FOUND', HttpStatus.NOT_FOUND);
-            return result;
-        } catch (error) {
-            console.log(error);
-            return new HttpException(error, HttpStatus.NOT_FOUND);
-        }
+        
+        return this.detailsServices.find({ relations: ['statud'] });
     }
 
     async findOneDetails(id: number) {

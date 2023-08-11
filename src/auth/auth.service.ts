@@ -9,7 +9,7 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private jwtTokenService: JwtService,
-  ) {}
+  ) { }
 
   async loginWithCredentials(user: AuthDto) {
     const { email, password } = user;
@@ -28,10 +28,9 @@ export class AuthService {
     const Token = this.jwtTokenService.sign(payload);
 
     const data = {
-      user: {...findUser, password:"****************"},
+      user: { ...findUser, password: "****************" },
       Token,
     };
-    console.log(data)
     return data;
   }
 }

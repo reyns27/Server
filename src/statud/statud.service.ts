@@ -4,16 +4,13 @@ import { UpdateStatudDto } from './dto/update-statud.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Statud } from './entities/statud.entity';
 import { Repository } from 'typeorm';
-import { details } from './details/entities/details.entity';
 import { UserService } from 'src/user/user.service';
-import { CreateDetailsDto } from './details/dto/create-details.dto';
-import { UpdatedDetailsDto } from './details/dto/update-details.dto';
+
 
 @Injectable()
 export class StatudService {
   constructor(
     @InjectRepository(Statud) private statudServices: Repository<Statud>,
-    @InjectRepository(details) private detailsServices: Repository<details>,
     private userServices: UserService,
   ) { }
 

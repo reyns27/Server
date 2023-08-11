@@ -4,7 +4,7 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToOne,
+    ManyToOne
 } from 'typeorm';
 import { Statud } from '../../entities/statud.entity';
 

@@ -9,8 +9,7 @@ import { DetailsService } from './details/details.service';
 import { UpdatedDetailsDto } from './details/dto/update-details.dto';
 
 
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+
 @ApiTags('Statud')
 @Controller('statud')
 export class StatudController {
