@@ -33,12 +33,7 @@ export class DetailsService {
     };
 
     async findAll() {
-        const result = await this.Manager.query('SELECT *FROM person')
-            .then((data) => {
-                return data
-            })
-            .catch((error) => console.log(error))
-        console.log(result)
+        
         return this.detailsServices.find({ relations: ['statud'] });
     }
 

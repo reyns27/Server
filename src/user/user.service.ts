@@ -8,12 +8,12 @@ import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 
 
-@Injectable() 
+@Injectable()
 export class UserService {
   constructor(
     private rolServices: RolService,
     @InjectRepository(User) private usersRepository: Repository<User>,
-  ) {}
+  ) { }
 
   //Create
   async create(createUserDto: CreateUserDto) {
@@ -40,12 +40,15 @@ export class UserService {
 
   //*-----------//GetAll------------------*/
   findAll() {
-    return this.usersRepository.find({ relations: ['rol'] });
+    return this.usersRepository.find({ select: { password: false }, relations: ['rol'] });
   }
 
   //*-----------//Get Id------------------*/
   findOne(id: number) {
     return this.usersRepository.findOne({
+      select: {
+        password: false
+      },
       where: {
         Id: id,
       },
@@ -56,6 +59,9 @@ export class UserService {
   //*-----------//Get Id------------------*/
   getUser(email: string) {
     return this.usersRepository.findOne({
+      select: {
+        password: false
+      },
       where: {
         email: email,
       },
