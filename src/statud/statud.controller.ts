@@ -42,7 +42,7 @@ export class StatudController {
     return this.statudService.findOne(+id);
   }
 
-  @Get('/details/')
+  @Get('/details')
   findAllDetails() {
     return this.detailsService.findAll();
   }
