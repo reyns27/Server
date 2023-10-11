@@ -6,8 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .addBearerAuth()
-    .setTitle('Gastos api')
-    .setDescription('The gastos API description')
+    .setTitle('Server Web Api')
+    .setDescription('The API description')
     .setVersion('1.0')
     .addTag('auth')
     .addTag('user')
