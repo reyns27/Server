@@ -40,7 +40,7 @@ export class UserService {
 
   //*-----------//GetAll------------------*/
   findAll() {
-    return this.usersRepository.find({ select: { password: false }, relations: ['rol'] });
+    return this.usersRepository.find({ select: { password: false }, relations: ['rol'],});
   }
 
   //*-----------//Get Id------------------*/

@@ -14,8 +14,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
-//@ApiBearerAuth()
-//@UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('user')
 @Controller('user')
 export class UserController {
@@ -27,7 +27,7 @@ export class UserController {
   }
 
   @Get()
-  findAll() {
+  findAll(){
     return this.userService.findAll();
   }
 
