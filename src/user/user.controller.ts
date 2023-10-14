@@ -7,19 +7,22 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { MailerService } from '@nestjs-modules/mailer';
+import { EmailDto } from './dto/req-email.dto';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('user')
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService, private mailService:MailerService) {}
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
@@ -45,4 +48,17 @@ export class UserController {
   remove(@Param('id') id: string) {
     return this.userService.remove(+id);
   }
+
+  @Post('email')
+   async SendMail(@Body() emailDto:EmailDto){
+    var response = await this.mailService.sendMail(
+      {
+        to:emailDto.Email,
+        from:"joelreynoso51@gmail.com",
+        subject:'Restablecer contraseña',
+        text:'Has click en el siguiente enlace'
+      }
+    );
+    return response;
+   };
 }

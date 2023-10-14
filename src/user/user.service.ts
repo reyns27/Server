@@ -96,4 +96,11 @@ export class UserService {
   remove(id: number) {
     return `This action removes a #${id} user`;
   }
+
+  resetPassword(email: string){
+    const userValid = this.usersRepository.findOne({where:{email}});
+    if (!userValid) return new HttpException('ACCOUNT_FOUND',HttpStatus.FOUND);
+    
+  }
+
 }
