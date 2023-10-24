@@ -19,7 +19,7 @@ export class UserService {
   async create(createUserDto: CreateUserDto) {
     const rolFound = await this.rolServices.findOne(createUserDto.rolId);
 
-    if (!rolFound) return new HttpException('error', HttpStatus.NOT_FOUND);
+    if (!rolFound) return new HttpException('ID_ROL_NOT_EXISTS', HttpStatus.NOT_FOUND);
 
     const newUser = await this.usersRepository.findOne({
       where: {

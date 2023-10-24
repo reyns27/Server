@@ -8,9 +8,10 @@ import { RolModule } from './rol/rol.module';
 import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
 import { MailerModule } from '@nestjs-modules/mailer';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
+    ServeStaticModule.forRoot({rootPath:join(__dirname,'..','client/dist/'), exclude: ['/api/(.*)'],}),
     MailerModule.forRoot({
       transport:{
         host:'smtp.gmail.com',
@@ -25,11 +26,11 @@ import { MailerModule } from '@nestjs-modules/mailer';
     TypeOrmModule.forRoot({
       type: 'postgres',
       ssl:true,
-      host: 'ep-jolly-union-85828486.us-east-2.aws.neon.fl0.io',
+      host: 'dpg-cknbi1iv7m0s73cbup7g-a.oregon-postgres.render.com',
       port: 5432,
-      username: 'fl0user',
-      password: '9gjJs0DYluNy',
-      database: 'DB-API',
+      username: 'admin',
+      password: 'CYTe6xI3oP5MbqRGHEvJuqRWxSu41cMm',
+      database: 'db_kzck',
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
     }),

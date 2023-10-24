@@ -17,8 +17,8 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { MailerService } from '@nestjs-modules/mailer';
 import { EmailDto } from './dto/req-email.dto';
 
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+/*@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)*/
 @ApiTags('user')
 @Controller('user')
 export class UserController {
