@@ -9,6 +9,9 @@ import { AuthModule } from './auth/auth.module';
 import { AccountModule } from './account/account.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { ChatModule } from './chat/chat.module';
+import { RoomsModule } from './rooms/rooms.module';
+import { MessagesModule } from './messages/messages.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({rootPath:join(__dirname,'../','client/dist')}),
@@ -38,6 +41,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     RolModule,
     AuthModule,
     AccountModule,
+    ChatModule,
+    RoomsModule,
+    MessagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
