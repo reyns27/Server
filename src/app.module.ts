@@ -11,7 +11,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
-    ServeStaticModule.forRoot({rootPath:join(__dirname,'..','client/dist/'), exclude: ['/api/(.*)'],}),
+    ServeStaticModule.forRoot({rootPath:join(__dirname,'../','client/dist')}),
     MailerModule.forRoot({
       transport:{
         host:'smtp.gmail.com',

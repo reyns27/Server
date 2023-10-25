@@ -14,11 +14,6 @@ export class AppController {
     private authService: AuthService,
   ) {}
 
-  @Get()
-  getHello(@Res() res: Response) {
-     res.redirect('/api');
-  }
-
   @ApiTags('auth')
   @Post('login')
   async login(@Body() params: AuthDto) {
