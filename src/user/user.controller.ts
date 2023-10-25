@@ -17,8 +17,8 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { MailerService } from '@nestjs-modules/mailer';
 import { EmailDto } from './dto/req-email.dto';
 
-/*@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)*/
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('user')
 @Controller('user')
 export class UserController {
@@ -49,7 +49,7 @@ export class UserController {
     return this.userService.remove(+id);
   }
 
-  @Post('email')
+  @Post('reset/password')
    async SendMail(@Body() emailDto:EmailDto){
     var response = await this.mailService.sendMail(
       {

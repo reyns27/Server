@@ -16,8 +16,8 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 
 
-/*@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)*/
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('rol')
 @Controller('rol')
 export class RolController {
