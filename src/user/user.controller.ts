@@ -16,6 +16,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { MailerService } from '@nestjs-modules/mailer';
 import { EmailDto } from './dto/req-email.dto';
+import { resetPasswordDto } from './dto/req-password.dto';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -51,14 +52,21 @@ export class UserController {
 
   @Post('reset/password')
    async SendMail(@Body() emailDto:EmailDto){
+    const Token = await this.userService.resetPassword(emailDto.Email);
     var response = await this.mailService.sendMail(
       {
         to:emailDto.Email,
         from:"joelreynoso51@gmail.com",
         subject:'Restablecer contraseña',
-        text:'Has click en el siguiente enlace'
+        text:`Utilice el siguiente token para restablecer la contraseña: ${Token}`
       }
     );
     return response;
    };
+
+   @Post('change/password')
+   async changePassword(@Body() params:resetPasswordDto){
+    const result = await this.userService.validToken(params);
+    return result;
+   }
 }

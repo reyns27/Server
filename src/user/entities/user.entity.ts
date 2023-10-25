@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
+import { UUID } from 'typeorm/driver/mongodb/bson.typings';
 
 @Entity()
 export class User {
@@ -30,6 +31,9 @@ export class User {
   
   @Column()
   rolId: number;
+
+  @Column({ length: 255, nullable: true })
+  token_Password:string;
 
   @Column('int')
   status: number;
