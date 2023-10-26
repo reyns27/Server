@@ -7,7 +7,6 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { UUID } from 'typeorm/driver/mongodb/bson.typings';
 
 @Entity()
 export class User {
