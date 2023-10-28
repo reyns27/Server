@@ -3,8 +3,11 @@ import { Dashboard } from '../dashboard/Dashboard';
 import Login from '../login/Login';
 import { PageFound } from '../404';
 import App from '../App';
+import ProtectedRoute from '../libs/ProtectedRoute';
+import { useAuthStore } from '../store/auth';
 
 const RouterManager = () => {
+    const isAuth = useAuthStore(state => state.isAuth);
     const routerPath: RouteObject[] = [{
         path:'/',
         element:<App />,
@@ -15,7 +18,7 @@ const RouterManager = () => {
             },
             {
                 path:'/Dashboard',
-                element:<Dashboard />,
+                element:<ProtectedRoute isAllowed={isAuth} children={<Dashboard/>} />,
             },
             {
                 path:'*',
