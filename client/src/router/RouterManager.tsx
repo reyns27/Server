@@ -1,35 +1,25 @@
-import { ReactElement } from 'react';
-import { useRoutes } from 'react-router-dom';
+import { RouteObject, useRoutes } from 'react-router-dom';
 import { Dashboard } from '../dashboard/Dashboard';
 import Login from '../login/Login';
+import { PageFound } from '../404';
 import App from '../App';
 
-interface IrouterPath {
-    path: string,
-    element: ReactElement,
-    children: [{
-        path: string,
-        element: ReactElement,
-        children: [{
-            path: string,
-            element: ReactElement,
-        }] | any,
-    }] | any
-};
-
 const RouterManager = () => {
-    const routerPath: IrouterPath[] = [{
+    const routerPath: RouteObject[] = [{
         path:'/',
         element:<App />,
         children:[
             {
-                path:'/',
+                index:true,
                 element:<Login />,
-                children:null
             },
             {
                 path:'/Dashboard',
                 element:<Dashboard />,
+            },
+            {
+                path:'*',
+                element:<PageFound />
             }
         ]
     }]
