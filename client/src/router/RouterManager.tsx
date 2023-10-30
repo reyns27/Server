@@ -1,12 +1,12 @@
 import { RouteObject, useRoutes } from 'react-router-dom';
 import { Dashboard } from '../dashboard/Dashboard';
-import Login from '../login/Login';
 import { PageFound } from '../404';
 import App from '../App';
 import ProtectedRoute from '../libs/ProtectedRoute';
 import { useAuthStore } from '../store/auth';
 import ChatComponent from '../chat/ChatComponent';
 import { RoomsChat } from '../chat/RoomsChat';
+import LoginComponent from '../login/LoginComponent';
 
 const RouterManager = () => {
     const isAuth = useAuthStore(state => state.isAuth);
@@ -16,7 +16,7 @@ const RouterManager = () => {
         children: [
             {
                 index: true,
-                element: <Login />,
+                element: <LoginComponent />,
             },
             {
                 path: '/Dashboard',
