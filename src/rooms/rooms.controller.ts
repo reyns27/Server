@@ -7,7 +7,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
-@Controller('rooms')
+@Controller('api/rooms')
 export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
 

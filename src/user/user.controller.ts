@@ -21,7 +21,7 @@ import { resetPasswordDto } from './dto/req-password.dto';
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('user')
-@Controller('user')
+@Controller('api/user')
 export class UserController {
   constructor(private readonly userService: UserService, private mailService:MailerService) {}
 
