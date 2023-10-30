@@ -8,7 +8,7 @@ type ResquestData = {
 }
 
 export const AuthLogin = async (email: string, password: string) => {
-    return axios.post<ResquestData>('http://localhost:3000/login', {
+    return axios.post<ResquestData>('http://localhost:3000/api/login', {
         email,
         password
     });
@@ -17,7 +17,7 @@ export const AuthLogin = async (email: string, password: string) => {
 
 export const profileResquest = async (id: number) => {
     const token = useAuthStore.getState().token
-    return axios.get<IUser>(`http://localhost:3000/user/${id}`, {
+    return axios.get<IUser>(`http://localhost:3000/api/user/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

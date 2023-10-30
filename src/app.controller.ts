@@ -15,7 +15,7 @@ export class AppController {
   ) {}
 
   @ApiTags('auth')
-  @Post('login')
+  @Post('api/login')
   async login(@Body() params: AuthDto) {
     return this.authService.loginWithCredentials(params);
   }

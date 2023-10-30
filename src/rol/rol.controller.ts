@@ -19,7 +19,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
 @ApiTags('rol')
-@Controller('rol')
+@Controller('api/rol')
 export class RolController {
   constructor(private readonly rolService: RolService) {}
 

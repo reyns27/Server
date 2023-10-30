@@ -2,21 +2,26 @@ import { ConnectedSocket, MessageBody, OnGatewayConnection, OnGatewayDisconnect,
 import { ChatService } from './chat.service';
 import {Server, Socket} from 'socket.io';
 import { SocketResquest } from './dto/SocketResquest';
+import { Injectable, Logger } from '@nestjs/common';
 
 @WebSocketGateway({
   cors:{origin:'*'}
 })
+@Injectable()
 export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect{
+  constructor(private readonly chatService: ChatService, private readonly logger: Logger) {}
   @WebSocketServer() server: Server;
   afterInit(server: any) {
+    this.logger.log('conexión socket activa....') 
     console.log('conexión socket activa....');
   }
 
-  handleConnection(client: any, ...args: any[]) {
+  handleConnection(client: Socket, ...args: any[]) {
+    this.logger.log(`${client.id} se ha connectado`) 
     console.log('Nuevo usuario connectado');
   }
-  handleDisconnect(client: any) {
-    console.log('Un usuario se ha desconectado');
+  handleDisconnect(client: Socket) {
+    this.logger.log(`${client.id} se ha desconnectado`) 
   }
 
   @SubscribeMessage('event_set_room')
@@ -27,11 +32,11 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
   @SubscribeMessage('message')
   handleJoinMessage(@MessageBody() data:SocketResquest, @ConnectedSocket() client:Socket){  
-    console.log(client.id)
+    this.logger.log(`${client.id} ha enviado un mensaje`) 
     client.broadcast.emit('message',{
       body:data.body,
       from:client.id
     });
   }
-  constructor(private readonly chatService: ChatService) {}
+  
 }
