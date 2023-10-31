@@ -1,6 +1,6 @@
 import { ApiProperty, ApiQuery } from '@nestjs/swagger';
 import { IsEmail, MinLength, MaxLength, IsNumber } from 'class-validator';
-import { UserRole } from '../UserRole';
+
 
 export class CreateUserDto {
   @ApiProperty()

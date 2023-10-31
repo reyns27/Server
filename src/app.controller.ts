@@ -1,6 +1,5 @@
 import { AppService } from './app.service';
-import { Controller, Get, Post, Body, Res} from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Post, Body} from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { AuthDto } from './auth/dto/auth.dto';
 import { ApiTags } from '@nestjs/swagger';
