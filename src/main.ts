@@ -12,6 +12,7 @@ async function bootstrap() {
     .addTag('auth')
     .addTag('user')
     .addTag('rol')
+    .addTag('messages')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
