@@ -10,6 +10,7 @@ const Login = () => {
   const setToken = useAuthStore(state => state.setToken);
   const setProfile = useAuthStore(state => state.setProfile);
   const Navigate = useNavigate();
+  
   const HandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const email = (e.currentTarget.elements[0] as HTMLInputElement).value;
