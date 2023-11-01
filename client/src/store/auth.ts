@@ -19,11 +19,11 @@ export const useAuthStore = create(persist<State & Actions>(
     token:"",
     isAuth:false,
     profile:null,
-    setToken: (token:string) => set((_state) =>({
+    setToken: (token:string) => set(() =>({
         token,
         isAuth:true
     })),
-    setProfile:(profile:IUser) => set(_state => ({
+    setProfile:(profile:IUser) => set(() => ({
         profile
     }))
 }),{
